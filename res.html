@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book a Table</title>
+  <link rel ="stylesheet" href ="res.css">
+</head>
+<body>
+  <h1>Make a Reservation</h1>
+  <form id="reservationForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" required><br>
+    <label for="date">Date:</label>
+    <input type="date" id="date" min="<?php echo date('Y-m-d'); ?>" required><br>
+    <label for="time">Time:</label>
+    <input type="time" id="time" required><br>
+    <label for="partySize">Number of people:</label>
+    <input type="number" id="numberofpeople" min="1" required><br>
+    <button type="submit">Submit Reservation</button>
+  </form>
+  <p id="message"></p>
+ <script>
+    const form = document.getElementById('reservationForm');
+    const message = document.getElementById('message');
+   form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const name = document.getElementById('name').value;
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value;
+      const partySize = document.getElementById('numberofpeople').value;
+      if (!name || !date || !time || !numberofpeople) {
+        message.textContent = 'Please fill in all required fields.';
+        return;
+      }
+      const reservation = {
+        name: name,
+        date: date,
+        time: time,
+        numberofpeople: numberofpeople
+      };
+      console.log("Reservation:", reservation); 
+      message.textContent = `Reservation for ${numberofpeople} people on ${date} at ${time} under the name ${name} is submitted.`;
+    });
+  </script>
+</body>
+</html>
